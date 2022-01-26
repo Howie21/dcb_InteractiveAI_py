@@ -6,10 +6,12 @@ import json
 
 client = discord.Client()
 
+sad_words = ["sad", "depressed", "unhappy", "angry", "depressing"]
+
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
-  json_data = json.loads(response)
-  quote = str(json_data['q']) + " -" + str(json_data['a'])
+  json_data = response.json()
+  quote = (json_data[0]['q']) + " -" + (json_data[0]['a'])
   return(quote)
 
 @client.event
